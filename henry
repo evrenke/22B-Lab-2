@@ -10,8 +10,8 @@ bool again();
 //Lab 02 Methods
 int stringLength(char *str);
 char* stringNCopy(char *str1, const char* str2);
-void stringNAdd();
-void stringNCompare();
+void stringNAdd(char s1[], char s2[], int copiedInd);
+int stringNCompare(char s1[], char s2[], int compInd);
 //Helper Methods
 string promptstr(string msg);
 string promptstr(string msg, int num);
@@ -92,14 +92,35 @@ char* stringNCopy(char *str1, const char *str2) {
 	}
 	return str1;
 }
-//todo
-void stringNAdd() {
-
+void stringNAdd(char s1[], char s2[], int copiedInd)
+{
+	int ind = 0;
+	while(s1[ind] != '\0')
+	{
+		ind++;
+	}
+	int add;
+	for (add = 0; add < copiedInd; add++)
+	{
+		s1[ind + add] = s2[add];
+	}
+	s1[ind + add] = '\0';
 }
 
-//todo
-void stringNCompare() {
-
+int stringNCompare(char s1[], char s2[], int compInd)
+{
+	for (int ind = 0; ind < compInd; ind++)
+	{
+		if (s1[ind] == '\0')
+			return -1;//s1 is smaller than s2
+		if (s2[ind] == '\0')
+			return 1; // s1 is bigger than s2
+		if (s1[ind] < s2[ind])
+			return -1;// s1 is smaller than s2
+		if (s1[ind] > s2[ind])
+			return 1;// s1 is bigger than s2
+	}
+	return 0;//comparison ended with both string equal in compared section
 }
 
 string promptstr(string msg) {
