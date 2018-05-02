@@ -1,0 +1,124 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//Selection Methods
+int getOperation();
+string *getInput(int size);
+bool again();
+//Lab 02 Methods
+int stringLength(char *str);
+char* stringNCopy(char *str1, const char* str2);
+void stringNAdd();
+void stringNCompare();
+//Helper Methods
+string promptstr(string msg);
+string promptstr(string msg, int num);
+int promptint(string msg);
+
+int main() {
+	int op;
+	int inSize;
+	string *input;
+	do {
+		op = getOperation();
+		inSize = 2;
+		if (op == 1)
+			inSize = 1;
+		input = getInput(inSize);
+		//Lab 02 specific methods goes inside switch
+		switch (op) {
+		case 1:
+			//int size = stringLength(input);
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		}
+		delete [] input;
+	} while (again());
+	//system("pause");
+	return 0;
+}
+
+int getOperation() {
+	cout << "What would you like to test?" << endl;
+	//string method selection code goes here
+	return 1;
+}
+
+string *getInput(int size) {
+	string *input = new string[size];
+	for (int i = 0; i < size; i++)
+		*(input + i) = promptstr("Please enter string #",i+1);
+	return input;
+}
+
+bool again() {
+	string responce;
+	while (true) {
+		cout << endl;
+		cout << "Would you like to try another method?" << endl;
+		responce = promptstr("Please respond with yes or no");
+		if (!responce.compare("yes"))
+			return true;
+		else if (!responce.compare("no"))
+			return false;
+		cout << endl;
+		cout << "Error, Invalid input" << endl;
+		cout << "Reprompting..." << endl << endl;
+	}
+}
+
+int stringLength(char *str) {
+	for (int count = 0;;count++) {
+		if (*(str + count) == NULL)
+			return count;
+	}
+}
+
+char* stringNCopy(char *str1, const char *str2) {
+	for (int count = 0;; count++) {
+		if (*(str2 + count) == NULL)
+			break;
+		*(str1 + count) = *(str2 + count);
+	}
+	return str1;
+}
+//todo
+void stringNAdd() {
+
+}
+
+//todo
+void stringNCompare() {
+
+}
+
+string promptstr(string msg) {
+	string str;
+	cout << msg << endl;
+	cin >> str;
+	return str;
+}
+
+string promptstr(string msg, int num) {
+	string str;
+	cout << msg << num << endl;
+	cin >> str;
+	return str;
+}
+
+int promptint(string msg) {
+	int num;
+	cout << msg << endl;
+	cin >> num;
+	return num;
+}
