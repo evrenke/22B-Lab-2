@@ -1,32 +1,91 @@
-# Prerequisites
-*.d
+/*
+	Filename: CIS22B_Lab02_EvrenKeskin.cpp
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+	Authors: Evren Keskin, and Henry 
 
-# Precompiled Headers
-*.gch
-*.pch
+	Date:	05/02/2018
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+	Description: This program will make 
+	duplicates of four string methods: strlen, strncpy, strncat, and strncmp
+*/
 
-# Fortran module files
-*.mod
-*.smod
+/* PSEUDOCODE
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+*/
+#include <string>
+#include <iostream>
 
-# Executables
-*.exe
-*.out
-*.app
+using namespace std;
+
+//int stringLength(string s);// should duplicate the functionality of strlen(original)
+//void stringNCopy(string s1, string s2);// should mimic strncpy(original)
+
+void stringNAdd(char s1[], char s2[], int i);// duplicates strncat(original)
+
+int stringNCompare(char s1[], char s2[], int i);// mimics the functionality of strncmp(original)
+
+/*
+Your main function should provide the user a menu of options on which function to test
+and then ask for the appropriate input to test the function and provide the output
+.  One of the menu options should be to continue the test or exit the program.
+*/
+int main()
+{
+
+	//TESTING stringNAdd
+	/*
+	char str1[80];
+	char str2[80];
+	strcpy (str1, "To be ");
+	strcpy (str2, "or not to be");
+	puts(str1);
+	puts(str2);
+	cout << endl << endl;
+	stringNAdd(str1, str2, 6);
+	puts(str1);
+	*/
+
+	//TESTING stringNCompare
+	/*
+	char str[][5] = { "R2D2" , "C3PO" , "R2A6", "R" };
+	int n;
+	puts("Looking for R2 astromech droids...");
+	for (n = 0; n<4; n++)
+		if (stringNCompare(str[n], "R2xx", 2) == 0)
+		{
+			printf("found %s\n", str[n]);
+		}
+	*/
+    return 0;
+}
+
+void stringNAdd(char s1[], char s2[], int copiedInd)
+{
+	int ind = 0;
+	while(s1[ind] != '\0')
+	{
+		ind++;
+	}
+	int add;
+	for (add = 0; add < copiedInd; add++)
+	{
+		s1[ind + add] = s2[add];
+	}
+	s1[ind + add] = '\0';
+}
+
+int stringNCompare(char s1[], char s2[], int compInd)
+{
+	for (int ind = 0; ind < compInd; ind++)
+	{
+		if (s1[ind] == '\0')
+			return -1;//s1 is smaller than s2
+		if (s2[ind] == '\0')
+			return 1; // s1 is bigger than s2
+		if (s1[ind] < s2[ind])
+			return -1;// s1 is smaller than s2
+		if (s1[ind] > s2[ind])
+			return 1;// s1 is bigger than s2
+	}
+	return 0;//comparison ended with both string equal in compared section
+}
