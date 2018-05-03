@@ -20,7 +20,7 @@ int promptint(string msg);
 int main() {
 	int op;
 	int inSize;
-	string *input;
+	char[][] *input;
 	do {
 		op = getOperation();
 		inSize = 2;
@@ -30,7 +30,8 @@ int main() {
 		//Lab 02 specific methods goes inside switch
 		switch (op) {
 		case 1:
-			//int size = stringLength(input);
+			int size = stringLength(input[0]);
+			cout << "This is the size of your string: " << size << endl;
 			break;
 		case 2:
 
@@ -49,9 +50,15 @@ int main() {
 }
 
 int getOperation() {
+	int selectedMethod;
 	cout << "What would you like to test?" << endl;
+	cout << "Enter 1 to test stringLength" << endl;
+	cout << "Enter 2 to test stringNCopy" << endl;
+	cout << "Enter 3 to test stringLength" << endl;
+	cout << "Enter 4 to test stringLength" << endl;
+	selectedMethod = promptint("Enter your selection:");
 	//string method selection code goes here
-	return 1;
+	return  selectedMethod;
 }
 
 string *getInput(int size) {
