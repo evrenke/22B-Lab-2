@@ -77,21 +77,22 @@ bool again() {
 	}
 }
 
-int stringLength(char *str) {
-	for (int count = 0;;count++) {
-		if (*(str + count) == NULL)
-			return count;
+int stringLength(char str[]) {
+	for (int index = 0;;index++) {
+		if (str[index] == NULL)
+			return index;
 	}
 }
 
-char* stringNCopy(char *str1, const char *str2) {
-	for (int count = 0;; count++) {
-		if (*(str2 + count) == NULL)
+char* stringNCopy(char str1[], char str2[], int max) {
+	for (int index = 0; index < max; index++) {
+		if (str2[index] == NULL)
 			break;
-		*(str1 + count) = *(str2 + count);
+		str1[index] = str2[index];
 	}
 	return str1;
 }
+
 void stringNAdd(char s1[], char s2[], int copiedInd)
 {
 	int ind = 0;
