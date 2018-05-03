@@ -1,3 +1,13 @@
+/*
+	
+	Authors: Evren Keskin, and Henry 
+
+	Date:	05/02/2018
+
+	Description: This program will make 
+	duplicates of four string methods: strlen, strncpy, strncat, and strncmp
+*/
+
 #include <iostream>
 #include <string>
 
