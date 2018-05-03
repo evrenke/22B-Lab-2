@@ -9,7 +9,7 @@ string *getInput(int size);
 bool again();
 //Lab 02 Methods
 int stringLength(char *str);
-char* stringNCopy(char *str1, const char* str2);
+void stringNCopy(char *str1, const char* str2);
 void stringNAdd(char s1[], char s2[], int copiedInd);
 int stringNCompare(char s1[], char s2[], int compInd);
 //Helper Methods
@@ -84,13 +84,12 @@ int stringLength(char str[]) {
 	}
 }
 
-char* stringNCopy(char str1[], char str2[], int max) {
+void stringNCopy(char str1[], char str2[], int max) {
 	for (int index = 0; index < max; index++) {
 		if (str2[index] == NULL)
 			break;
 		str1[index] = str2[index];
 	}
-	return str1;
 }
 
 void stringNAdd(char s1[], char s2[], int copiedInd)
