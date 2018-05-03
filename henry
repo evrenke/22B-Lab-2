@@ -8,8 +8,8 @@ int getOperation();
 string *getInput(int size);
 bool again();
 //Lab 02 Methods
-int stringLength(char *str);
-void stringNCopy(char *str1, const char* str2);
+int stringLength(char str[]);
+void stringNCopy(char str1[], char str2[], int max);
 void stringNAdd(char s1[], char s2[], int copiedInd);
 int stringNCompare(char s1[], char s2[], int compInd);
 //Helper Methods
