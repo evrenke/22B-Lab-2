@@ -20,7 +20,7 @@ int promptint(string msg);
 int main() {
 	int op;
 	int inSize;
-	char[][] *input;
+	string *input;
 	do {
 		op = getOperation();
 		inSize = 2;
