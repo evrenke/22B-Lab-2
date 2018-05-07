@@ -16,7 +16,6 @@ using namespace std;
 //Selection Methods
 int getOperation();
 char *getInput(int size);
-void setVar(char str1[], char str2[], int num, int size);
 bool again();
 //Lab 02 Methods
 int stringLength(const char str[]);
