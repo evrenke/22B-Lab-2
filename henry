@@ -146,31 +146,23 @@ void stringNCopy(char str1[], char str2[],int max) {
 
 void stringNAdd(char s1[], char s2[], int copiedInd)
 {
-	int ind = 0;
-	while (s1[ind] != '\0')
-	{
-		ind++;
-	}
+	int ind = stringLength(s1);
 	int add;
 	for (add = 0; add < copiedInd; add++)
 	{
-		s1[ind + add] = s2[add];
+		*(s1 + ind + add) = *(s1 + add);
 	}
-	s1[ind + add] = '\0';
+	*(s1 + ind + add) = '\0';
 }
 
 int stringNCompare(char s1[], char s2[], int compInd)
 {
 	for (int ind = 0; ind < compInd; ind++)
 	{
-		if (s1[ind] == '\0')
-			return -1;//s1 is smaller than s2
-		if (s2[ind] == '\0')
+		if (*(s1 + ind) == '\0' || *(s1 + ind) < *(s2 + ind))
+			return -1; //s1 is smaller than s2
+		if (*(s2 + ind) == '\0' || *(s1 + ind) > *(s2 + ind))
 			return 1; // s1 is bigger than s2
-		if (s1[ind] < s2[ind])
-			return -1;// s1 is smaller than s2
-		if (s1[ind] > s2[ind])
-			return 1;// s1 is bigger than s2
 	}
 	return 0;//comparison ended with both string equal in compared section
 }
