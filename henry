@@ -15,66 +15,99 @@ using namespace std;
 
 //Selection Methods
 int getOperation();
-string *getInput(int size);
+char *getInput(int size);
+void setVar(char str1[], char str2[], int num, int size);
 bool again();
 //Lab 02 Methods
-int stringLength(char str[]);
+int stringLength(const char str[]);
 void stringNCopy(char str1[], char str2[], int max);
 void stringNAdd(char s1[], char s2[], int copiedInd);
 int stringNCompare(char s1[], char s2[], int compInd);
-//Helper Methods
-string promptstr(string msg);
-string promptstr(string msg, int num);
-int promptint(string msg);
 
 int main() {
 	int op;
-	int inSize;
-	string *input;
+	int num = 0;
+	int num2 = 0;
+	char *input1;
+	char *input2;
 	do {
 		op = getOperation();
-		inSize = 2;
-		if (op == 1)
-			inSize = 1;
-		input = getInput(inSize);
 		//Lab 02 specific methods goes inside switch
 		switch (op) {
 		case 1:
-			int size = stringLength(input[0]);
-			cout << "This is the size of your string: " << size << endl;
+			cout << "Testing stringLength()" << endl;
+			input1 = getInput(25);
+			input2 = new char;
+			num = stringLength(input1);
+			cout << "The size of (" << input1 << ") is " << num << " characters long" << endl;
 			break;
 		case 2:
-
+			cout << "Testing stringNCopy()" << endl;
+			input1 = getInput(25);
+			input2 = getInput(25);
+			cout << "Please enter an int" << endl;
+			cin >> num;
+			cout << "The result of StringNCopy using <" << input1 << "> and <" << input2 << "> with the specified length of " << num;
+			stringNCopy(input1, input2, num);
+			cout << "> is <" << input2 << ">"<< endl;
 			break;
 		case 3:
-
+			cout << "Testing StringNAdd()" << endl;
+			input1 = getInput(25);
+			input2 = getInput(25);
+			cout << "Please enter an int" << endl;
+			cin >> num;
+			cout << "The result of StringNAdd using <" << input1 << "> and <" << input2 << "> with the specified length of <" << num;
+			stringNAdd(input1, input2, num);
+			cout << "> is <" << input1 << ">" << endl;
 			break;
 		case 4:
-
+			cout << "Testing StringNCompare()" << endl;
+			input1 = getInput(25);
+			input2 = getInput(25);
+			cout << "Please enter an int" << endl;
+			cin >> num;
+			cout << "Comparing the given strings <" << input1 << "> and <" << input2 << "> up to the given length of <" << num << ">" << endl;
+			num2 = stringNCompare(input1, input2, num);
+			switch (num2) {
+			case -1:
+				cout << "<" << input2 << "> is greater" << endl;
+				break;
+			case 0:
+				cout << "The two strings are equal" << endl;
+				break;
+			case 1:
+				cout << "<" << input1 << "> is greater" << endl;
+				break;
+			}
 			break;
+		default:
+			input1 = new char;
+			input2 = new char;
 		}
-		delete [] input;
 	} while (again());
+	delete input1;
+	delete input2;
 	//system("pause");
 	return 0;
 }
 
 int getOperation() {
-	int selectedMethod;
+	int op;
 	cout << "What would you like to test?" << endl;
-	cout << "Enter 1 to test stringLength" << endl;
-	cout << "Enter 2 to test stringNCopy" << endl;
-	cout << "Enter 3 to test stringLength" << endl;
-	cout << "Enter 4 to test stringLength" << endl;
-	selectedMethod = promptint("Enter your selection:");
-	//string method selection code goes here
-	return  selectedMethod;
+	cout << "Enter 1 to test stringLength()" << endl;
+	cout << "Enter 2 tp test stringNCopy()" << endl;
+	cout << "Enter 3 to test stringNAdd()" << endl;
+	cout << "Enter 4 to test stringNCompare()" << endl;
+	cin >> op;
+	cout << endl;
+	return op;
 }
 
-string *getInput(int size) {
-	string *input = new string[size];
-	for (int i = 0; i < size; i++)
-		*(input + i) = promptstr("Please enter string #",i+1);
+char *getInput(int size) {
+	cout << "Please enter a String" << endl;
+	char *input = new char[size];
+	cin >> input;
 	return input;
 }
 
@@ -83,7 +116,9 @@ bool again() {
 	while (true) {
 		cout << endl;
 		cout << "Would you like to try another method?" << endl;
-		responce = promptstr("Please respond with yes or no");
+		cout << "Please respond with yes or no" << endl;
+		cin >> responce;
+		cout << endl;
 		if (!responce.compare("yes"))
 			return true;
 		else if (!responce.compare("no"))
@@ -94,25 +129,25 @@ bool again() {
 	}
 }
 
-int stringLength(char str[]) {
+int stringLength(const char str[]) {
 	for (int index = 0;;index++) {
-		if (str[index] == NULL)
+		if (*(str+index) == '\0')
 			return index;
 	}
 }
 
-void stringNCopy(char str1[], char str2[], int max) {
+void stringNCopy(char str1[], char str2[],int max) {
 	for (int index = 0; index < max; index++) {
-		if (str2[index] == NULL)
+		if (*(str1+index) == '\0')
 			break;
-		str1[index] = str2[index];
+		*(str2 + index) = *(str1 + index);
 	}
 }
 
 void stringNAdd(char s1[], char s2[], int copiedInd)
 {
 	int ind = 0;
-	while(s1[ind] != '\0')
+	while (s1[ind] != '\0')
 	{
 		ind++;
 	}
@@ -138,25 +173,4 @@ int stringNCompare(char s1[], char s2[], int compInd)
 			return 1;// s1 is bigger than s2
 	}
 	return 0;//comparison ended with both string equal in compared section
-}
-
-string promptstr(string msg) {
-	string str;
-	cout << msg << endl;
-	cin >> str;
-	return str;
-}
-
-string promptstr(string msg, int num) {
-	string str;
-	cout << msg << num << endl;
-	cin >> str;
-	return str;
-}
-
-int promptint(string msg) {
-	int num;
-	cout << msg << endl;
-	cin >> num;
-	return num;
 }
